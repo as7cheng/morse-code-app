@@ -1,5 +1,5 @@
 $(document).ready(function(){
     $("#homeStartBtn").click(function() {
-        window.location.href = `/letters`;
+        window.location.href = `/letters/0`;
     })
 })

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    .pic_center{
+        text-align: center;
+    }
+    .sound_text{
+        padding: 30px 0px 30px 400px;
+        color: grey;
+        font-size: 20px;
+    }
+    .sound_pad{
+        padding-left: 315px;
+    }
+    .mid{
+        text-align: center;
+        padding-top: 65px;
+        color: #FBAB01;
+    }
+    .wordBottomBtn2 {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding-top: 55px;
+    }
+    .wordBottomBtn2 .wordNextBtn2 {
+        background-color: #FBAB01;
+        border-color: #FBAB01;
+        color: #fff;
+        width: 150px;
+        height: 40px;
+        font-size: 18px;
+    }
+</style>
+
+<script src="../static/words_2.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 pic_center">
+            <img src="../static/assert/WORD_PEACE.png" alt="word_peace" width = "1300">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="sound_text">It sounds like</div>
+            <div class="sound_pad">
+                <audio
+                    controls    
+                    src="../static/assert/morse_code_sounds/mcs-peace.wav">
+                        Your browser does not support the
+                        <code>audio</code> element.
+                </audio> 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 wordBottomBtn2">
+            <button type="button" class="btn btn-warning wordNextBtn2" id="wordProviousBtn2">Previous</button>
+        </div>
+        <div class="col-md-8 mid">Sample Word 2/2</div>
+        <div class="col-md-2 wordBottomBtn2">
+            <button type="button" class="btn btn-warning wordNextBtn2" id="wordNextBtn2">Done</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

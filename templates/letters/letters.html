@@ -1,6 +1,57 @@
 {% extends "layout.html" %}
 {% block content %}
+<style>
+    .mid_line{
+        border-right: 5px solid;
+        border-color: #FBAB01;
+        padding-top: 130px;
+        padding-right: 100px;
+        padding-left: 100px;
+        font-size: 28px;
+        color: #5E5E5E;
+    }
+    .bord{
+        font-weight: bolder;
+    }
+    .pad{
+        padding: 100px 100px 100px 100px;
+    }
+    .wordBottomBtn {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding-top: 25px;
+    }
+    .wordBottomBtn .wordNextBtn {
+        background-color: #FBAB01;
+        border-color: #FBAB01;
+        color: #fff;
+        width: 150px;
+        height: 40px;
+        font-size: 18px;
+    }
+</style>
 
-<b>letters page</b>
+<script src="../static/letter_instruction.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mid_line">
+            <span class="bord">
+                Morse code
+            </span> is a method used in telecommunication to encode text characters as standardized sequences 
+            of two different signal durations, called dots and dashes, or dits and dahs. 
+        </div>
+        <div class="col-md-6 pad">
+            <img src="../static/assert/Words_instruction.png" alt="Words_instruction" width = "400">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 wordBottomBtn">
+            <button type="button" class="btn btn-warning wordNextBtn" id="wordNextBtn">Next</button>
+        </div>
+    </div>
+    
+</div>
 
 {% endblock %}
