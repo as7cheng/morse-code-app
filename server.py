@@ -3,108 +3,80 @@ from flask import render_template, redirect
 from flask import Response, request, jsonify
 app = Flask(__name__)
 
-learning_char = {
-    "A": {
+data = [
+    {
         "id": 1,
-        "morse_code": ".-",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-A.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-a.wav",
-        "previous": "/letters",
-        "next": "/letters/C"
+        "letter": "A",
+        "img_le": "../static/assert/letter_image/LETTER_A_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-A.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-a.wav"
     },
-    "C": {
+    {
         "id": 2,
-        "morse_code": "-.-.",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-C.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-c.wav",
-        "previous": "/letters/A",
-        "next": "/letters/E"
+        "letter": "C",
+        "img_le": "../static/assert/letter_image/LETTER_C_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-C.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-c.wav"
     },
-    "E": {
+    {
         "id": 3,
-        "morse_code": ".",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-E.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-e.wav",
-        "previous": "/letters/C",
-        "next": "/letters/H"
+        "letter": "E",
+        "img_le": "../static/assert/letter_image/LETTER_E_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-E.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-e.wav"
     },
-    "H": {
+    {
         "id": 4,
-        "morse_code": "....",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-H.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-h.wav",
-        "previous": "/letters/E",
-        "next": "/letters/L"
+        "letter": "H",
+        "img_le": "../static/assert/letter_image/LETTER_H_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-H.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-h.wav"
     },
-    "L": {
+    {
         "id": 5,
-        "morse_code": ".-..",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-L.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-l.wav",
-        "previous": "/letters/H",
-        "next": "/letters/M"
+        "letter": "L",
+        "img_le": "../static/assert/letter_image/LETTER_L_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-L.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-l.wav"
     },
-    "M": {
+    {
         "id": 6,
-        "morse_code": "--",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-M.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-m.wav",
-        "previous": "/letters/L",
-        "next": "/letters/O"
+        "letter": "M",
+        "img_le": "../static/assert/letter_image/LETTER_M_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-M.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-m.wav"
     },
-    "O": {
+    {
         "id": 7,
-        "morse_code": "---",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-O.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-o.wav",
-        "previous": "/letters/M",
-        "next": "/letters/P"
+        "letter": "O",
+        "img_le": "../static/assert/letter_image/LETTER_O_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-O.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-o.wav"
     },
-    "P": {
+    {
         "id": 8,
-        "morse_code": ".--.",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-P.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-p.wav",
-        "previous": "/letters/O",
-        "next": "/letters/R"
+        "letter": "P",
+        "img_le": "../static/assert/letter_image/LETTER_P_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-P.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-p.wav"
     },
-    "R": {
+    {
         "id": 9,
-        "morse_code": ".-.",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-R.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-r.wav",
-        "previous": "/letters/P",
-        "next": "/letters/S"
+        "letter": "R",
+        "img_le": "../static/assert/letter_image/LETTER_R_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-R.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-r.wav"
     },
-    "S": {
+    {
         "id": 10,
-        "morse_code": "...",
-        "quick_memory_image": "static/quick_memory_image/Morse-Code-Letter-A.jpg",
-        "morse_code_sounds": "static/morse_code_sounds/mcs-a.wav",
-        "previous": "/letters/R",
-        "next": "/words/HOPE"
-    }
-}
-
-learning_word = {
-
-    "HOPE": {
-        "id": 11,
-        "morse_code": [learning_char[c]["morse_code"] for c in "HOPE"],
-        "quick_memory_image": [learning_char[c]["quick_memory_image"] for c in "HOPE"],
-        "morse_code_sounds": "static/morse_code_sounds/mcs-hope.wav",
-        "previous": "/letters/S",
-        "next": "/words/PEACE"
+        "letter": "S",
+        "img_le": "../static/assert/letter_image/LETTER_S_LIFT.png",
+        "img_ri": "../static/assert/quick_memory_image/Morse-Code-Letter-S.jpg",
+        "sound": "../static/assert/morse_code_sounds/mcs-s.wav"
     },
-    "PEACE": {
-        "id": 12,
-        "morse_code": [learning_char[c]["morse_code"] for c in "PEACE"],
-        "quick_memory_image": [learning_char[c]["quick_memory_image"] for c in "PEACE"],
-        "morse_code_sounds": "static/morse_code_sounds/mcs-peace.wav",
-        "previous": "/words/HOPE",
-        "next": "/quiz"
-    },
-}
+]
+
+
 # ROUTES
 @app.route('/')
 def index():
@@ -114,19 +86,24 @@ def index():
 def home():
     return render_template('home.html')
 
-@app.route('/letters')
+@app.route('/letters/0')
 def letters():
     return render_template('letters/letters.html')
 
-@app.route('/letters/<var>')
-def show_letters(var=None):
-    data = learning_char[var]
-    return render_template('letters/letters.html', data=data)
+@app.route('/letters/<id>')
+def letters_letter(id=1):
+    global data
+    for letter in data:
+        if letter["id"] == int(id):
+            return render_template('letters/letters_letter.html', data=data, letter=letter)
 
-@app.route('/words/<var>')
-def words(var=None):
-    data = learning_word[var]
-    return render_template('words/words.html', data=data)
+@app.route('/words/1')
+def words():
+    return render_template('words/words_1.html')
+
+@app.route('/words/2')
+def words_2():
+    return render_template('words/words_2.html')
 
 @app.route('/quiz')
 def quiz():
