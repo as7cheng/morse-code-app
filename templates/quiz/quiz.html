@@ -1,6 +1,110 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<b>quiz page</b>
+<style>
+    .quizMain .quizMidString {
+        height: 600px;
+        width: 10px;
+        background-color: #FBAB01;
+    }
+
+    .quizMain .quizMid {
+        display: flex;
+        justify-content: center;
+    }
+
+    .quizMain .quizMainRight img {
+        width: 100%;
+    }
+
+    .quizMain .quizStartBtnBox,
+    .quizMain .quizLearnAgainBtnBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quizMain .quizStartBtnBox button{
+        background-color: #FBAB01;
+        border-color: #FBAB01;
+        color: #fff;
+        width: 250px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .quizMain .quizStartBtnBox {
+        margin-top: 120px;
+        margin-bottom: 30px;
+    }
+
+    .quizMain .quizLearnAgainBtn {
+        border-color: #FBAB01;
+        color: #FBAB01;
+        width: 250px;
+        height: 60px;
+        font-size: 22px;
+    }
+
+    .quizMain .quizLearnAgainBtn:hover {
+        color: #fff;
+        background-color: #FBAB01;
+    }
+
+    .quizMain .quizMainLeft p {
+        font-size: 25px;
+        color: #5E5E5E;
+    }
+
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz.js') }}"></script>
+
+<div class="container quizMain">
+    <div class="row">
+        <div class="col-md-5 quizMainLeft">
+            <br>
+            <br>
+            <br>
+            <br>
+            <p>Now, you've learned 10 letters and 5
+                simple words. Let's see if you have
+                solid memory on them. We will have
+                10 problems: 7 for letters and 3 for
+                words.
+            </p>
+            <br>
+            <br>
+            <p>
+                Click Start Quiz to play with the quiz.
+            </p>
+            <br>
+            <br>
+            <p>
+                If you need to learn from the
+                beginning, click Learn again.
+            </p>
+        </div>
+        <div class="col-md-1 quizMid">
+            <div class="quizMidString"></div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12 quizMainRight">
+                    <br>
+                    <br>
+                    <br>
+                    <img src="../static/assert/quiz_main_right.jpg" alt="quiz_main_right">
+                </div>
+                <div class="col-md-12 quizStartBtnBox">
+                    <button type="button" class="btn btn-warning quizStartBtn" id="quizStartBtn">Start Quiz</button>
+                </div>
+                <div class="col-md-12 quizLearnAgainBtnBox">
+                    <button type="button" class="btn btn-outline-warning quizLearnAgainBtn" id="quizLearnAgainBtn">Learn Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

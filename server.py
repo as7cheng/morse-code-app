@@ -109,5 +109,19 @@ def words_2():
 def quiz():
     return render_template('quiz/quiz.html')
 
+@app.route('/quiz/<num>')
+def quiz_questions(num):
+    data = 'quizData'
+    return render_template('quiz/quiz' + num + '.html', data = data)
+
+@app.route('/quiz/<num>/result', methods=["POST", "GET"])
+def quiz_questions_result(num):
+    data = {
+        "result": 0,
+        "selected": 'A',
+        "rightAwswer": 'E'
+    }
+    return render_template('quiz/quiz' + num + 'Result.html', data = data)
+
 if __name__ == '__main__':
    app.run(debug = True)
