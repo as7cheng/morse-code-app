@@ -82,7 +82,7 @@ quiz_data = [
         "id": 1,
         "img": "../static/assert/quiz/quiz_images/quiz01Question.png",
         "audio": "../static/assert/morse_code_sounds/mcs-e.wav",
-        "ans": "e",
+        "ans": "E",
         "prompt": "Which option is the corresponding letter?"
     },
     {
@@ -96,7 +96,7 @@ quiz_data = [
         "id": 3,
         "img": "",
         "audio": "../static/assert/morse_code_sounds/mcs-o.wav",
-        "ans": "o",
+        "ans": "O",
         "prompt": "Listen to the audio. What letter is it?"
     },
     {
@@ -110,7 +110,7 @@ quiz_data = [
         "id": 5,
         "img": "",
         "audio": "../static/assert/morse_code_sounds/mcs-l.wav",
-        "ans": "l",
+        "ans": "L",
         "prompt": "Which option is the corresponding letter?"
     },
     {
@@ -131,7 +131,7 @@ quiz_data = [
         "id": 8,
         "img": "../static/assert/quiz/quiz_images/quiz08Question.png",
         "audio": "../static/assert/morse_code_sounds/mcs-sos.wav",
-        "ans": "sos",
+        "ans": "SOS",
         "prompt": "What is the word for these codes?"
     },
     {
@@ -145,7 +145,7 @@ quiz_data = [
         "id": 10,
         "img": "",
         "audio": "../static/assert/morse_code_sounds/mcs-lmao.wav",
-        "ans": "lmao",
+        "ans": "LMAO",
         "prompt": "Listen to the audio and write down the code."
     }
 ]
@@ -206,39 +206,44 @@ def words_2():
 def quiz():
     return render_template('quiz/quiz.html')
 
-@app.route('/quiz/<num>')
-def quiz_questions(num):
-    data = 'quizData'
-    return render_template('quiz/quiz' + num + '.html', data = data)
+@app.route('/quiz/<id>')
+def quiz_questions(id):
+    global quiz_data
+    global TOTAL_SOCRE
+    
+    for quiz in quiz_data:
+        if quiz["id"] == int(id):
+            return render_template('quiz/quiz' + id + '.html', data = quiz, id = id, scores = TOTAL_SOCRE)
 
-@app.route('/quiz/<num>/result', methods=["POST", "GET"])
-def quiz_questions_result(num):
-    data = {
-        "result": 0,
-        "selected": 'A',
-        "rightAwswer": 'E'
-    }
-    return render_template('quiz/quiz' + num + 'Result.html', data = data)
 
-@app.route('/quiz/check_ans/<id>+<ans>', methods=["GET"])
-def check_ans(qid=None, ans=None) -> dict:
+@app.route('/quiz/check_ans/<qid>', methods=["GET", "Post"])
+def check_ans(qid=None):
     '''
     Function to determin if user's anwer is correct or not
     Return correctness,
     '''
     global TOTAL_SOCRE
+    global quiz_data
+    
+    ans = request.form["quiz1"]
+    print('ans =', ans) # ans = ImmutableMultiDict([('quiz1', 'P')])
+    
     correctness = False
-    question = [q for q in quiz_data if q['id'] == qid]
+    question = [q for q in quiz_data if q["id"] == int(qid)]
+    print('question =', question)
     if len(question) != 1:
         raise Exception("invalid question id")
     if ans == question[0]['ans']:
         TOTAL_SOCRE += 1
         correctness = True
+    
     result = {
         "correctness": correctness,
-        "ans": question['ans'],
-        "scores": TOTAL_SOCRE
+        "ans": question[0]['ans'],
+        "scores": TOTAL_SOCRE,
+        "checked": ans
     }
+    
     return jsonify(result)
 
 

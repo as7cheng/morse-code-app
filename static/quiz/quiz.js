@@ -4,6 +4,6 @@ $(document).ready(function(){
     });
 
     $("#quizStartBtn").click(function() {
-        window.location.href = `/quiz/01`;
+        window.location.href = `/quiz/1`;
     });
 })

@@ -95,22 +95,16 @@
         font-size: 20px;
         margin-top: 30px;
     }
-
-    .curScores {
-        padding-left: 100px;
-        color: #FBAB01;
-        font-size: 20px;
-    }
-
-    #resultInfo {
-        font-size: 18px;
-    }
 </style>
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizResult.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz1.js') }}"></script>
 <script>
     let data = {{data|tojson}}
+    let id = {{id|tojson}}
+    let scores = {{scores|tojson}}
     console.log(data)
+    console.log(id)
+    console.log(scores)
 </script>
 
 <div class="container quizSingleBox">
@@ -118,21 +112,22 @@
         <div class="col-md-8 quizSingle">
             <div class="row">
                 <div class="col-md-5 quizItemBox">
-                    <div class="quizImageBox"><img src="../../static/assert/quiz_images/quiz01Question.jpg" alt="quiz01"></div>
+                    <div class="quizImageBox"><img src="{{data.img}}" alt="quiz01"></div>
                 </div>
                 <div class="col-md-2 quizEqual">
-                    <img src="../../static/assert/quiz_equal.jpg" alt="quiz+equal">
+                    <img src="../../static/assert/quiz/quiz_equal.jpg" alt="quiz_equal">
                 </div>
                 <div class="col-md-5 quizItemBox">
                     <div class="quizImageBox"><i class="fas fa-solid fa-question"></i></div>
                 </div>
             </div>
             <div class="col-md-12 quizItemBottom">
-                Which option is the corresponding letter?
+                {{data.prompt}}
             </div>
             <div class="row quizProcessBox">
-                <div class="col-md-8 curScores">Scores: 0 (-----)</div>
-                <div class="col-md-4 quizProcess">Quiz 1 / 10</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6 quizProcess" id="quizScore">Scores: {{scores}}</div>
+                <div class="col-md-4 quizProcess">Quiz {{id}} / 10</div>
             </div>
         </div>
         <div class="col-md-1 quizSingleMidStringBox">
@@ -140,35 +135,26 @@
         </div>
         <div class="col-md-3 quizSingle">
             <p>Select the right answer:</p>
-            <form action="01/result" method="POST" class="row quiz01">
+            <form action="check_ans/1" method="POST" class="row need-validated quiz01" id="formSingle">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz01" id="flexRadioDefault1" value="A" disabled>
+                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault1" value="A" required>
                     <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;A</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz01" id="flexRadioDefault2" value="S" disabled>
+                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault2" value="S" required>
                     <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;S</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz01" id="flexRadioDefault3" value="P" disabled>
+                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault3" value="P" required>
                     <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;P</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz01" id="flexRadioDefault4" value="E" disabled>
+                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault4" value="E" required>
                     <label class="form-check-label" for="flexRadioDefault4">&nbsp;&nbsp;E</label>
                 </div>
+                <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
+                <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
             </form>
-            <div class="row">
-                <div class="col-md-12" id="resultInfo"></div>
-                <div class="col-md-6"></div>
-                <div class="col-md-6 quizSubmitBtn">
-                    <br>
-                    <br>
-                    <br>
-                    <button type="button" class="btn btn-warning" id="quiz01Next">Next</button>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>
