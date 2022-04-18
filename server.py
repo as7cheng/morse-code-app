@@ -3,7 +3,7 @@ from flask import render_template, redirect
 from flask import Response, request, jsonify
 app = Flask(__name__)
 
-data = [
+learning_data = [
     {
         "id": 1,
         "letter": "A",
@@ -76,6 +76,79 @@ data = [
     },
 ]
 
+quiz_data = [
+    {
+        "id": 1,
+        "img": "./static/assert/quiz/quiz_images/quiz01Question.png",
+        "audio": "./static/assert/morse_code_sounds/mcs-e.wav",
+        "ans": "e",
+        "prompt": "Which option is the corresponding letter?"
+    },
+    {
+        "id": 2,
+        "img": "./static/assert/quiz/quiz_images/quiz02Question.png",
+        "audio": "./static/assert/morse_code_sounds/mcs-s.wav",
+        "ans": "...",
+        "prompt": "What is the Morse Code for this letter?"
+    },
+    {
+        "id": 3,
+        "img": "",
+        "audio": "./static/assert/morse_code_sounds/mcs-o.wav",
+        "ans": "o",
+        "prompt": "Listen to the audio. What letter is it?"
+    },
+    {
+        "id": 4,
+        "img": "./static/assert/quiz/quiz_images/quiz04Question.png",
+        "audio": "./static/assert/morse_code_sounds/mcs-c.wav",
+        "ans": "true",
+        "prompt": "Are they a code/letter pair?"
+    },
+    {
+        "id": 5,
+        "img": "",
+        "audio": "./static/assert/morse_code_sounds/mcs-l.wav",
+        "ans": "l",
+        "prompt": "Which option is the corresponding letter?"
+    },
+    {
+        "id": 6,
+        "img": "./static/assert/quiz/quiz_images/quiz06Question.png",
+        "audio": "./static/assert/morse_code_sounds/mcs-r.wav",
+        "ans": ".-.",
+        "prompt": "Which option is the corresponding code?"
+    },
+    {
+        "id": 7,
+        "img": "",
+        "audio": "./static/assert/morse_code_sounds/mcs-m.wav",
+        "ans": "--",
+        "prompt": "Listen to the audio and write down the code."
+    },
+    {
+        "id": 8,
+        "img": "./static/assert/quiz/quiz_images/quiz08Question.png",
+        "audio": "./static/assert/morse_code_sounds/mcs-sos.wav",
+        "ans": "sos",
+        "prompt": "What is the word for these codes?"
+    },
+    {
+        "id": 9,
+        "img": "./static/assert/quiz/quiz_images/quiz09Question.png",
+        "audio": "",
+        "ans": ".... . .-.. .--.",
+        "prompt": "Write down the corresponding codes."
+    },
+    {
+        "id": 10,
+        "img": "",
+        "audio": "./static/assert/morse_code_sounds/mcs-lmao.wav",
+        "ans": "lmao",
+        "prompt": "Listen to the audio and write down the code."
+    }
+]
+
 
 # ROUTES
 @app.route('/')
@@ -92,10 +165,10 @@ def letters():
 
 @app.route('/letters/<id>')
 def letters_letter(id=1):
-    global data
-    for letter in data:
+    global learning_data
+    for letter in learning_data:
         if letter["id"] == int(id):
-            return render_template('letters/letters_letter.html', data=data, letter=letter)
+            return render_template('letters/letters_letter.html', data=learning_data, letter=letter)
 
 @app.route('/words/1')
 def words():
