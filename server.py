@@ -79,63 +79,63 @@ learning_data = [
 quiz_data = [
     {
         "id": 1,
-        "img": "./static/assert/quiz/quiz_images/quiz01Question.png",
-        "audio": "./static/assert/morse_code_sounds/mcs-e.wav",
+        "img": "../static/assert/quiz/quiz_images/quiz01Question.png",
+        "audio": "../static/assert/morse_code_sounds/mcs-e.wav",
         "ans": "e",
         "prompt": "Which option is the corresponding letter?"
     },
     {
         "id": 2,
-        "img": "./static/assert/quiz/quiz_images/quiz02Question.png",
-        "audio": "./static/assert/morse_code_sounds/mcs-s.wav",
+        "img": "../static/assert/quiz/quiz_images/quiz02Question.png",
+        "audio": "../static/assert/morse_code_sounds/mcs-s.wav",
         "ans": "...",
         "prompt": "What is the Morse Code for this letter?"
     },
     {
         "id": 3,
         "img": "",
-        "audio": "./static/assert/morse_code_sounds/mcs-o.wav",
+        "audio": "../static/assert/morse_code_sounds/mcs-o.wav",
         "ans": "o",
         "prompt": "Listen to the audio. What letter is it?"
     },
     {
         "id": 4,
-        "img": "./static/assert/quiz/quiz_images/quiz04Question.png",
-        "audio": "./static/assert/morse_code_sounds/mcs-c.wav",
+        "img": "../static/assert/quiz/quiz_images/quiz04Question.png",
+        "audio": "../static/assert/morse_code_sounds/mcs-c.wav",
         "ans": "true",
         "prompt": "Are they a code/letter pair?"
     },
     {
         "id": 5,
         "img": "",
-        "audio": "./static/assert/morse_code_sounds/mcs-l.wav",
+        "audio": "../static/assert/morse_code_sounds/mcs-l.wav",
         "ans": "l",
         "prompt": "Which option is the corresponding letter?"
     },
     {
         "id": 6,
-        "img": "./static/assert/quiz/quiz_images/quiz06Question.png",
-        "audio": "./static/assert/morse_code_sounds/mcs-r.wav",
+        "img": "../static/assert/quiz/quiz_images/quiz06Question.png",
+        "audio": "../static/assert/morse_code_sounds/mcs-r.wav",
         "ans": ".-.",
         "prompt": "Which option is the corresponding code?"
     },
     {
         "id": 7,
         "img": "",
-        "audio": "./static/assert/morse_code_sounds/mcs-m.wav",
+        "audio": "../static/assert/morse_code_sounds/mcs-m.wav",
         "ans": "--",
         "prompt": "Listen to the audio and write down the code."
     },
     {
         "id": 8,
-        "img": "./static/assert/quiz/quiz_images/quiz08Question.png",
-        "audio": "./static/assert/morse_code_sounds/mcs-sos.wav",
+        "img": "../static/assert/quiz/quiz_images/quiz08Question.png",
+        "audio": "../static/assert/morse_code_sounds/mcs-sos.wav",
         "ans": "sos",
         "prompt": "What is the word for these codes?"
     },
     {
         "id": 9,
-        "img": "./static/assert/quiz/quiz_images/quiz09Question.png",
+        "img": "../static/assert/quiz/quiz_images/quiz09Question.png",
         "audio": "",
         "ans": ".... . .-.. .--.",
         "prompt": "Write down the corresponding codes."
@@ -143,11 +143,13 @@ quiz_data = [
     {
         "id": 10,
         "img": "",
-        "audio": "./static/assert/morse_code_sounds/mcs-lmao.wav",
+        "audio": "../static/assert/morse_code_sounds/mcs-lmao.wav",
         "ans": "lmao",
         "prompt": "Listen to the audio and write down the code."
     }
 ]
+
+TOTAL_SOCRE = 0
 
 
 # ROUTES
@@ -195,6 +197,28 @@ def quiz_questions_result(num):
         "rightAwswer": 'E'
     }
     return render_template('quiz/quiz' + num + 'Result.html', data = data)
+
+@app.route('/quiz/check_ans/<id>+<ans>', methods=["GET"])
+def check_ans(qid=None, ans=None) -> dict:
+    '''
+    Function to determin if user's anwer is correct or not
+    Return correctness,
+    '''
+    global TOTAL_SOCRE
+    correctness = False
+    question = [q for q in quiz_data if q['id'] == qid]
+    if len(question) != 1:
+        raise Exception("invalid question id")
+    if ans == question[0]['ans']:
+        TOTAL_SOCRE += 1
+        correctness = True
+    result = {
+        "correctness": correctness,
+        "ans": question['ans'],
+        "scores": TOTAL_SOCRE
+    }
+    return jsonify(result)
+
 
 if __name__ == '__main__':
    app.run(debug = True)
