@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template, redirect
 from flask import Response, request, jsonify
+from datetime import datetime
 app = Flask(__name__)
 
 learning_data = [
@@ -151,6 +152,7 @@ quiz_data = [
 
 TOTAL_SOCRE = 0
 
+user_learning_history = []
 
 # ROUTES
 @app.route('/')
@@ -159,25 +161,45 @@ def index():
 
 @app.route('/home')
 def home():
+    global user_learning_history
+    history = (datetime.now(), "home page")
+    user_learning_history.append(history)
+    print(history)
     return render_template('home.html')
 
 @app.route('/letters/0')
 def letters():
+    global user_learning_history
+    history = (datetime.now(), "letter intro page")
+    user_learning_history.append(history)
+    print(history)
     return render_template('letters/letters.html')
 
 @app.route('/letters/<id>')
 def letters_letter(id=1):
     global learning_data
+    global user_learning_history
+    history = (datetime.now(), learning_data[int(id)-1]["letter"])
+    user_learning_history.append(history)
+    print(history)
     for letter in learning_data:
         if letter["id"] == int(id):
             return render_template('letters/letters_letter.html', data=learning_data, letter=letter)
 
 @app.route('/words/1')
 def words():
+    global user_learning_history
+    history = (datetime.now(), "HOPE")
+    user_learning_history.append(history)
+    print(history)
     return render_template('words/words_1.html')
 
 @app.route('/words/2')
 def words_2():
+    global user_learning_history
+    history = (datetime.now(), "PEACE")
+    user_learning_history.append(history)
+    print(history)
     return render_template('words/words_2.html')
 
 @app.route('/quiz')
