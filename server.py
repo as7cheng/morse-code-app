@@ -244,6 +244,8 @@ def words_2():
 
 @app.route('/quiz')
 def quiz():
+    global TOTAL_SOCRE
+    TOTAL_SOCRE = 0
     return render_template('quiz/quiz.html')
 
 @app.route('/quiz/final')
@@ -278,7 +280,7 @@ def check_ans(qid=None):
     print('question =', question)
     if len(question) != 1:
         raise Exception("invalid question id")
-    if ans == question[0]['ans']:
+    if ans.lower() == question[0]['ans'].lower():
         TOTAL_SOCRE += 1
         correctness = True
 
