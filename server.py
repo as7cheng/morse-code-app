@@ -80,70 +80,110 @@ learning_data = [
 quiz_data = [
     {
         "id": 1,
+        "type": "selection",
         "img": "../static/assert/quiz/quiz_images/quiz01Question.png",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "Select the right answer:",
+        "placeholder": "",
         "audio": "../static/assert/morse_code_sounds/mcs-e.wav",
         "ans": "E",
         "prompt": "Which option is the corresponding letter?"
     },
     {
         "id": 2,
+        "type": "input",
         "img": "../static/assert/quiz/quiz_images/quiz02Question.png",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "Type the right answer:",
+        "placeholder": "Type the morse code",
         "audio": "../static/assert/morse_code_sounds/mcs-s.wav",
         "ans": "...",
         "prompt": "What is the Morse Code for this letter?"
     },
     {
         "id": 3,
+        "type": "input",
         "img": "",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "Type the right answer:",
+        "placeholder": "Type the letter",
         "audio": "../static/assert/morse_code_sounds/mcs-o.wav",
         "ans": "O",
         "prompt": "Listen to the audio. What letter is it?"
     },
     {
         "id": 4,
+        "type": "selection",
         "img": "../static/assert/quiz/quiz_images/quiz04Question.png",
+        "img2": "../static/assert/quiz/quiz_images/quiz04Question2.png",
+        "questionName": "Select the right answer:",
+        "placeholder": "",
         "audio": "../static/assert/morse_code_sounds/mcs-c.wav",
         "ans": "true",
         "prompt": "Are they a code/letter pair?"
     },
     {
         "id": 5,
+        "type": "selection",
         "img": "",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "Select the right answer:",
+        "placeholder": "",
         "audio": "../static/assert/morse_code_sounds/mcs-l.wav",
         "ans": "L",
         "prompt": "Which option is the corresponding letter?"
     },
     {
         "id": 6,
+        "type": "selection",
         "img": "../static/assert/quiz/quiz_images/quiz06Question.png",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "Select the right answer:",
+        "placeholder": "",
         "audio": "../static/assert/morse_code_sounds/mcs-r.wav",
         "ans": ".-.",
         "prompt": "Which option is the corresponding code?"
     },
     {
         "id": 7,
+        "type": "selection",
         "img": "",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "type the right answer:",
+        "placeholder": "type the morse code",
         "audio": "../static/assert/morse_code_sounds/mcs-m.wav",
         "ans": "--",
         "prompt": "Listen to the audio and write down the code."
     },
     {
         "id": 8,
+        "type": "input",
         "img": "../static/assert/quiz/quiz_images/quiz08Question.png",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "type the right answer:",
+        "placeholder": "type the word",
         "audio": "../static/assert/morse_code_sounds/mcs-sos.wav",
         "ans": "SOS",
         "prompt": "What is the word for these codes?"
     },
     {
         "id": 9,
+        "type": "input",
         "img": "../static/assert/quiz/quiz_images/quiz09Question.png",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "type the right answer:",
+        "placeholder": "Use spaces to separate letters",
         "audio": "",
         "ans": ".... . .-.. .--.",
         "prompt": "Write down the corresponding codes."
     },
     {
         "id": 10,
+        "type": "input",
         "img": "",
+        "img2": "../static/assert/quiz/quiz_question_mark",
+        "questionName": "type the right answer:",
+        "placeholder": "type the word",
         "audio": "../static/assert/morse_code_sounds/mcs-lmao.wav",
         "ans": "LMAO",
         "prompt": "Listen to the audio and write down the code."
@@ -215,7 +255,7 @@ def quizFinal():
 def quiz_questions(id):
     global quiz_data
     global TOTAL_SOCRE
-    
+
     for quiz in quiz_data:
         if quiz["id"] == int(id):
             return render_template('quiz/quiz' + id + '.html', data = quiz, id = id, scores = TOTAL_SOCRE)
@@ -229,10 +269,10 @@ def check_ans(qid=None):
     '''
     global TOTAL_SOCRE
     global quiz_data
-    
+
     ans = request.form["quiz"]
     print('ans =', ans) # ans = ImmutableMultiDict([('quiz1', 'P')])
-    
+
     correctness = False
     question = [q for q in quiz_data if q["id"] == int(qid)]
     print('question =', question)
@@ -241,7 +281,7 @@ def check_ans(qid=None):
     if ans == question[0]['ans']:
         TOTAL_SOCRE += 1
         correctness = True
-    
+
     result = {
         "id": question[0]["id"],
         "correctness": correctness,
@@ -249,7 +289,7 @@ def check_ans(qid=None):
         "scores": TOTAL_SOCRE,
         "checked": ans
     }
-    
+
     return jsonify(result)
 
 
