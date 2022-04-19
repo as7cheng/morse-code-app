@@ -40,7 +40,7 @@ $(document).ready(function(){
         $("#quizScore").html(`Scores: ${data.scores}`);
 
         $("#quizNext").click(function() {
-            window.location.href = `/quiz/2`;
+            window.location.href = `/quiz/6`;
         })
     });
 })

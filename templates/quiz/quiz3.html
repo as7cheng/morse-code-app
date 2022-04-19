@@ -1,0 +1,21 @@
+{% extends "quiz/quizLayout.html" %}
+{% block quizContent %}
+
+<style>
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz3.js') }}"></script>
+
+<form action="check_ans/3" method="POST" class="row need-validated quiz3" id="formSingle">
+    <div class="col-md-12">
+        <input type="text" class="form-control" id="quiz2Input" name="quiz" placeholder="{{data.placeholder}}" required>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
+    <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "quiz/quizLayout.html" %}
+{% block quizContent %}
+
+<style>
+
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz4.js') }}"></script>
+
+<form action="check_ans/4" method="POST" class="row need-validated quiz4" id="formSingle">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault1" value="true" required>
+        <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;True</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault2" value="false" required>
+        <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;False</label>
+    </div>
+    <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
+    <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
+</form>
+
+{% endblock %}

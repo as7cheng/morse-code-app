@@ -1,162 +1,47 @@
-{% extends "layout.html" %}
-{% block content %}
+{% extends "quiz/quizLayout.html" %}
+{% block quizContent %}
 
 <style>
-    .quizSingleBox .quizSingleMidStringBox .quizSingleMidString {
-        height: 600px;
-        width: 10px;
-        background-color: #FBAB01;
-    }
-
-    .quizSingle {
-        margin-top: 100px;
-    }
-
-    .quizImageBox {
-        width: 200px;
-        height: 200px;
-        border: 2px solid #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .quizImageBox i {
-        font-size: 100px;
-    }
-
-    .quizImageBox img {
-        width: 100%;
-    }
-
-    .quizItemBox {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .quizEqual {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .quizEqual img {
-        width: 100%;
-    }
-
-    .quizItemBottom {
-        margin-top: 70px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 25px;
-        color: #5E5E5E;
-    }
-
-    .quizProcessBox {
-        margin-top: 150px;
-    }
-
-    .quizProcessBox .quizProcess {
-        color: #FBAB01;
-        font-size: 20px;
-    }
-
-    .quizSingle p {
-        font-size: 25px;
-        color: #5E5E5E;
-    }
-
-    .quiz01 {
+    .quiz1 {
         margin-left: 20px;
         margin-top: 30px;
     }
 
-    .quiz01 input{
+    .quiz1 input{
         transform:scale(2);
     }
 
-    .quiz01 label {
+    .quiz1 label {
         font-size: 25px;
         transform: translateY(-7px);
     }
 
-    .quiz01 .form-check {
+    .quiz1 .form-check {
         margin-bottom: 10px;
-    }
-
-    .quizSubmitBtn button {
-        background-color: #FBAB01;
-        border-color: #FBAB01;
-        color: #fff;
-        width: 150px;
-        height: 40px;
-        font-size: 20px;
-        margin-top: 30px;
     }
 </style>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz1.js') }}"></script>
-<script>
-    let data = {{data|tojson}}
-    let id = {{id|tojson}}
-    let scores = {{scores|tojson}}
-    console.log(data)
-    console.log(id)
-    console.log(scores)
-</script>
 
-<div class="container quizSingleBox">
-    <div class="row">
-        <div class="col-md-8 quizSingle">
-            <div class="row">
-                <div class="col-md-5 quizItemBox">
-                    <div class="quizImageBox"><img src="{{data.img}}" alt="quiz01"></div>
-                </div>
-                <div class="col-md-2 quizEqual">
-                    <img src="../../static/assert/quiz/quiz_equal.jpg" alt="quiz_equal">
-                </div>
-                <div class="col-md-5 quizItemBox">
-                    <div class="quizImageBox"><i class="fas fa-solid fa-question"></i></div>
-                </div>
-            </div>
-            <div class="col-md-12 quizItemBottom">
-                {{data.prompt}}
-            </div>
-            <div class="row quizProcessBox">
-                <div class="col-md-2"></div>
-                <div class="col-md-6 quizProcess" id="quizScore">Scores: {{scores}}</div>
-                <div class="col-md-4 quizProcess">Quiz {{id}} / 10</div>
-            </div>
-        </div>
-        <div class="col-md-1 quizSingleMidStringBox">
-            <div class="quizSingleMidString"></div>
-        </div>
-        <div class="col-md-3 quizSingle">
-            <p>Select the right answer:</p>
-            <form action="check_ans/1" method="POST" class="row need-validated quiz01" id="formSingle">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault1" value="A" required>
-                    <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;A</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault2" value="S" required>
-                    <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;S</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault3" value="P" required>
-                    <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;P</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quiz1" id="flexRadioDefault4" value="E" required>
-                    <label class="form-check-label" for="flexRadioDefault4">&nbsp;&nbsp;E</label>
-                </div>
-                <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
-                <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
-            </form>
-        </div>
+<form action="check_ans/1" method="POST" class="row need-validated quiz1" id="formSingle">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault1" value="A" required>
+        <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;A</label>
     </div>
-</div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault2" value="S" required>
+        <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;S</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault3" value="P" required>
+        <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;P</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault4" value="E" required>
+        <label class="form-check-label" for="flexRadioDefault4">&nbsp;&nbsp;E</label>
+    </div>
+    <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
+    <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
+</form>
 
 {% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    .quizSingleBox .quizSingleMidStringBox .quizSingleMidString {
+        height: 600px;
+        width: 10px;
+        background-color: #FBAB01;
+    }
+
+    .quizSingle {
+        margin-top: 100px;
+    }
+
+    .quizImageBox {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .quizImageBox i {
+        font-size: 100px;
+    }
+
+    .quizImageBox img {
+        width: 100%;
+    }
+
+    .quizItemBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quizEqual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quizEqual img {
+        width: 100%;
+    }
+
+    .quizItemBottom {
+        margin-top: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        color: #5E5E5E;
+    }
+
+    .quizProcessBox {
+        margin-top: 150px;
+    }
+
+    .quizProcessBox .quizProcess {
+        color: #FBAB01;
+        font-size: 20px;
+    }
+
+    .quizSingle p {
+        font-size: 25px;
+        color: #5E5E5E;
+    }
+
+    .quizSubmitBtn button {
+        background-color: #FBAB01;
+        border-color: #FBAB01;
+        color: #fff;
+        width: 150px;
+        height: 40px;
+        font-size: 20px;
+        margin-top: 30px;
+    }
+</style>
+
+<script>
+    let data = {{data|tojson}}
+    let id = {{id|tojson}}
+    let scores = {{scores|tojson}}
+    console.log(data)
+    console.log(id)
+    console.log(scores)
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizLayout.js') }}"></script>
+
+<div class="container quizSingleBox">
+    <div class="row">
+        <div class="col-md-8 quizSingle">
+            <div class="row">
+                <div class="col-md-5 quizItemBox">
+                    <div class="quizImageBox" id="quizLeftBox"></div>
+                </div>
+                <div class="col-md-2 quizEqual">
+                    <img src="../../static/assert/quiz/quiz_equal.jpg" alt="quiz_equal">
+                </div>
+                <div class="col-md-5 quizItemBox">
+                    <div class="quizImageBox" id="quizRightBox"></div>
+                </div>
+            </div>
+            <div class="col-md-12 quizItemBottom">
+                {{data.prompt}}
+            </div>
+            <div class="row quizProcessBox">
+                <div class="col-md-2"></div>
+                <div class="col-md-6 quizProcess" id="quizScore">Scores: {{scores}}</div>
+                <div class="col-md-4 quizProcess">Quiz {{id}} / 10</div>
+            </div>
+        </div>
+        <div class="col-md-1 quizSingleMidStringBox">
+            <div class="quizSingleMidString"></div>
+        </div>
+        <div class="col-md-3 quizSingle">
+            <p>{{data.input}}</p>
+            {% block quizContent %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

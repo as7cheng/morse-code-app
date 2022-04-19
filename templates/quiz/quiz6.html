@@ -1,0 +1,47 @@
+{% extends "quiz/quizLayout.html" %}
+{% block quizContent %}
+
+<style>
+    .quiz6 {
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+
+    .quiz6 input{
+        transform:scale(2);
+    }
+
+    .quiz6 label {
+        font-size: 25px;
+        transform: translateY(-7px);
+    }
+
+    .quiz6 .form-check {
+        margin-bottom: 10px;
+    }
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz6.js') }}"></script>
+
+<form action="check_ans/6" method="POST" class="row need-validated quiz6" id="formSingle">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault1" value="..-." required>
+        <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;..-.</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault2" value="-.-." required>
+        <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;-.-.</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault3" value=".-." required>
+        <label class="form-check-label" for="flexRadioDefault2">&nbsp;&nbsp;.-.</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault4" value="..." required>
+        <label class="form-check-label" for="flexRadioDefault4">&nbsp;&nbsp;...</label>
+    </div>
+    <div class="col-md-12 quizResultPrompt" id="quizResultPrompt"></div>
+    <div class="col-md-12 quizSubmitBtn" id="quizSubmitBtn"></div>
+</form>
+
+{% endblock %}

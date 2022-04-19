@@ -225,7 +225,7 @@ def check_ans(qid=None):
     global TOTAL_SOCRE
     global quiz_data
     
-    ans = request.form["quiz1"]
+    ans = request.form["quiz"]
     print('ans =', ans) # ans = ImmutableMultiDict([('quiz1', 'P')])
     
     correctness = False
