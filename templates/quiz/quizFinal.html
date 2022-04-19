@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    .quizFinal .quizSingleMidString {
+        height: 600px;
+        width: 10px;
+        background-color: #FBAB01;
+    }
+
+    .quizFinalLeftPart {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quizFinal .quizFinalLeftBox {
+        width: 80%;
+        height: 500px;
+        background-color: #FBAB01;
+        padding: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .quizFinal .quizFinalLeftBox p {
+        color: #fff;
+        font-size: 25px;
+    }
+
+    .quizFinalRightPart {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .quizFinalRightPart button {
+        background-color: #FBAB01;
+        border-color: #FBAB01;
+        color: #fff;
+        width: 250px;
+        height: 60px;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizFinal.js') }}"></script>
+<script>
+    let scores = {{scores|tojson}}
+    console.log(scores)
+</script>
+
+<div class="container quizFinal">
+    <div class="row">
+        <div class="col-md-7 quizFinalLeftPart">
+            <div class="quizFinalLeftBox">
+                <p>Congratulations! You got {{scores}} points!</p>
+                <p>Your correction rate is {{scores}}0%!</p>
+                <p>You passed the tests!</p>
+                <p>If you have interests to continue
+                    learning morse codes for the rest of
+                    letters, click <a href="https://www.codebug.org.uk/learn/step/540/morse-code-alphabet/" target="_blank">here</a>!</p>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="quizSingleMidString"></div>
+        </div>
+        <div class="col-md-4 quizFinalRightPart">
+            <button type="button" class="btn btn-warning" id="quizFinalQuizAgainBtn">Do Quiz Again!</button>
+            <button type="button" class="btn btn-warning" id="quizFinalLearnAgainBtn">Learn Again</button>
+            <button type="button" class="btn btn-warning" id="quizFinalBackHomeBtn">Back Home</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

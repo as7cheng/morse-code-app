@@ -1,29 +1,9 @@
 {% extends "quiz/quizLayout.html" %}
 {% block quizContent %}
 
-<style>
-    .quiz6 {
-        margin-left: 20px;
-        margin-top: 30px;
-    }
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizRadio.js') }}"></script>
 
-    .quiz6 input{
-        transform:scale(2);
-    }
-
-    .quiz6 label {
-        font-size: 25px;
-        transform: translateY(-7px);
-    }
-
-    .quiz6 .form-check {
-        margin-bottom: 10px;
-    }
-</style>
-
-<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quiz6.js') }}"></script>
-
-<form action="check_ans/6" method="POST" class="row need-validated quiz6" id="formSingle">
+<form action="check_ans/6" method="POST" class="row need-validated quizFormRadio" id="formSingle">
     <div class="form-check">
         <input class="form-check-input" type="radio" name="quiz" id="flexRadioDefault1" value="..-." required>
         <label class="form-check-label" for="flexRadioDefault1">&nbsp;&nbsp;..-.</label>

@@ -206,6 +206,11 @@ def words_2():
 def quiz():
     return render_template('quiz/quiz.html')
 
+@app.route('/quiz/final')
+def quizFinal():
+    global TOTAL_SOCRE
+    return render_template('quiz/quizFinal.html', scores = TOTAL_SOCRE)
+
 @app.route('/quiz/<id>')
 def quiz_questions(id):
     global quiz_data
@@ -238,6 +243,7 @@ def check_ans(qid=None):
         correctness = True
     
     result = {
+        "id": question[0]["id"],
         "correctness": correctness,
         "ans": question[0]['ans'],
         "scores": TOTAL_SOCRE,

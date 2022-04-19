@@ -13,7 +13,7 @@
     }
 
     .quizImageBox {
-        width: 200px;
+        min-width: 200px;
         height: 200px;
         border: 2px solid #000;
         display: flex;
@@ -77,8 +77,27 @@
         font-size: 20px;
         margin-top: 30px;
     }
+
+    .quizFormRadio {
+        margin-left: 20px;
+        margin-top: 30px;
+    }
+
+    .quizFormRadio input{
+        transform:scale(2);
+    }
+
+    .quizFormRadio label {
+        font-size: 25px;
+        transform: translateY(-7px);
+    }
+
+    .quizFormRadio .form-check {
+        margin-bottom: 10px;
+    }
 </style>
 
+<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizLayout.js') }}"></script>
 <script>
     let data = {{data|tojson}}
     let id = {{id|tojson}}
@@ -87,8 +106,6 @@
     console.log(id)
     console.log(scores)
 </script>
-
-<script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizLayout.js') }}"></script>
 
 <div class="container quizSingleBox">
     <div class="row">
