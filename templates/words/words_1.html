@@ -11,7 +11,7 @@
         font-size: 20px;
     }
     .sound_pad{
-        padding-left: 335px;
+        padding-left: 420px;
     }
     .mid{
         text-align: center;
@@ -32,6 +32,27 @@
         height: 40px;
         font-size: 18px;
     }
+    .customAudio {
+        width: 90px;
+        height: 90px;
+        background-color: #e4e9ef;
+        border-radius: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        text-align: center;
+    }
+    .customAudio:hover {
+        background-color: #FBAB01;
+        cursor: pointer;
+    }
+    .customAudio i {
+        font-size: 40px;
+    }
+    .time{
+        padding-left: 23px;
+    }
 </style>
 
 <script src="../static/words_1.js"></script>
@@ -45,13 +66,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="sound_text">It sounds like</div>
-            <div class="sound_pad">
-                <audio
-                    controls    
-                    src="../static/assert/morse_code_sounds/mcs-hope.wav">
-                        Your browser does not support the
-                        <code>audio</code> element.
-                </audio> 
+            <div class="sound_pad" id="sound">
             </div>
         </div>
     </div>
