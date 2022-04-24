@@ -95,6 +95,31 @@
     .quizFormRadio .form-check {
         margin-bottom: 10px;
     }
+
+    #quizLeftBox {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .customAudio {
+        width: 50%;
+        height: 50%;
+        background-color: #e4e9ef;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+
+    .customAudio:hover {
+        background-color: #FBAB01;
+        cursor: pointer;
+    }
+
+    .customAudio i {
+        font-size: 40px;
+    }
 </style>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizLayout.js') }}"></script>

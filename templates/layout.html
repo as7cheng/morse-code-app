@@ -17,7 +17,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   <!-- custom style -->
   <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
-  <!-- <script src="../static/layout.js"></script> -->
+  <!-- custom js -->
+  <script src="{{url_for('static', filename='index.js')}}"></script>
   <!-- font-awsome -->
   <script src="https://kit.fontawesome.com/f1d1b90985.js" crossorigin="anonymous"></script>
   <title>Morse Code</title>
@@ -25,12 +26,11 @@
 <body>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <!-- <div class="storeName"><a class="navbar-brand" href="/">Books store</a></div> -->
       <div class="collapse navbar-collapse topNav" id="navbarNavAltMarkup">
-        <div class="navbar-nav"><a class="nav-link" href="/home">Home</a></div>
-        <div class="navbar-nav"><a class="nav-link" href="/letters/0">Letters</a></div>
-        <div class="navbar-nav"><a class="nav-link" href="/words/1">Words</a></div>
-        <div class="navbar-nav"><a class="nav-link" href="/quiz">Quiz</a></div>
+        <div class="navbar-nav"><a class="nav-link tab" id="home" href="/home">Home</a></div>
+        <div class="navbar-nav"><a class="nav-link tab" id="letters" href="/letters/0">Letters</a></div>
+        <div class="navbar-nav"><a class="nav-link tab" id="words" href="/words/1">Words</a></div>
+        <div class="navbar-nav"><a class="nav-link tab" id="quiz" href="/quiz">Quiz</a></div>
       </div>
     </div>
   </nav>
