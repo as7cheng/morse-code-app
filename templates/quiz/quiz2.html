@@ -3,9 +3,9 @@
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'quiz/quizInput.js') }}"></script>
 
-<form action="check_ans/2" method="POST" class="row need-validated" id="formSingle">
+<form action="check_ans/2" method="POST" class="row need-validated" id="formSingle" onsubmit="return validateForm()">
     <div class="col-md-12">
-        <input type="text" class="form-control" id="quiz2Input" name="quiz" placeholder='{{data.placeholder}}' required>
+        <input type="text" class="form-control" id="quizInput" name="quiz" placeholder='{{data.placeholder}}' required>
     </div>
     <br>
     <br>
